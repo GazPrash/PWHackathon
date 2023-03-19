@@ -46,8 +46,20 @@ def analyze(conversations):
         output = clf.predict(corpus)
         emotions.append(emotions_map[output[0]])
         # emotions[output[0]] += 1
-        
+        list.append(output[0])
+
+        if most_common(list) == 0:
+            return A
+        if most_common(list) == 1:
+            return B
+        if most_common(list) == 2:
+            return C
+        if most_common(list) == 3:
+            return D
+        if most_common(list) == 4:
+            return E
+        if most_common(list) == 5:
+            return F
+
     
-
-
 
