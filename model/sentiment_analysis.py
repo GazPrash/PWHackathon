@@ -1,7 +1,8 @@
 import pickle
 
-MODEL_PATH = "model/saved_models/model_{id}.pkl"
-VECTOR_PATH = "model/saved_models/wordvector_{id}.pkl"
+id = 244
+MODEL_PATH = f"model/saved_models/model_{id}.pkl"
+VECTOR_PATH = f"model/saved_models/wordvector_{id}.pkl"
 
 emotions_map = {0 :'sadness', 1 :'anger', 2 : 'love', 3 : 'surprise', 4 :'fear', 5: 'joy'}
 
@@ -25,6 +26,8 @@ def analyze(conversations):
         output = clf.predict(corpus)
         emotions.append(emotions_map[output[0]])
         # emotions[output[0]] += 1
+
+
         
-    
+
 
