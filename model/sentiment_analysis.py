@@ -9,7 +9,7 @@ MODEL_PATH = f"model/saved_models/model_{id}.pkl"
 VECTOR_PATH = f"model/saved_models/wordvector_{id}.pkl"
 
 emotions_map = {0 :'sadness', 1 :'anger', 2 : 'love', 3 : 'surprise', 4 :'fear', 5: 'joy'}
-list = []
+emotions = []
 
 A = "It's been really cool chatting with you. From making some observations, I can tell you've been sad and Hey, if you're feeling down, don't worry - you're not alone. Reach out to someone you trust and let them know what's up. Make time for some self-love, like a nice hot bath or a refreshing walk. Don't let those negative thoughts bring you down - challenge them and set some small goals you can crush. And if those bad vibes stick around, don't hesitate to hit up a pro who can give you some guidance and support. You got this!  We update our initial quesion everyday, so different bonding each day. Make me your daily dairy and I'll always be happy to chatch up. "
 
@@ -39,26 +39,26 @@ def most_common(List):
 
 def analyze(conversations):
     clf, wordvec = LoadModel()
-    emotions = [0 for i in range(6)]
+    emotions = []
     
     for reply in conversations:
         corpus = wordvec.transform([reply]).toarray()
         output = clf.predict(corpus)
-        emotions.append(emotions_map[output[0]])
+        # emotions.append(emotions_map[output[0]])
         # emotions[output[0]] += 1
-        list.append(output[0])
+        emotions.append(output[0])
 
-        if most_common(list) == 0:
+        if most_common(emotions) == 0:
             return A
-        if most_common(list) == 1:
+        if most_common(emotions) == 1:
             return B
-        if most_common(list) == 2:
+        if most_common(emotions) == 2:
             return C
-        if most_common(list) == 3:
+        if most_common(emotions) == 3:
             return D
-        if most_common(list) == 4:
+        if most_common(emotions) == 4:
             return E
-        if most_common(list) == 5:
+        if most_common(emotions) == 5:
             return F
 
     

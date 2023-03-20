@@ -1,9 +1,14 @@
 import openai
+import pickle 
 import gradio 
 from model.sentiment_analysis import analyze
 
 
-openai.api_key = "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"
+# key = "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"
+
+with open("data/APIKEY.pkl", "rb") as f:
+    openai.api_key = pickle.load(f)
+
 
 messages = [{"role": "system", "content": "You are sassy youngster"}]
 
